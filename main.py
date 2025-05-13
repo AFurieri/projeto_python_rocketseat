@@ -1,3 +1,12 @@
+def adicionar_tarefa(tarefas, nome_tarefa):
+    tarefa = {"tarefa":nome_tarefa, "completa": False}
+    tarefas.append(tarefa)
+
+    print(f"tarefa '{nome_tarefa}' adicionada com sucesso")
+    return
+
+tasks = []
+
 while True:
         print("\nmenu do gerenciamento de listas\n")
         print("opção 1: adicionar tarefa")
@@ -13,17 +22,8 @@ while True:
             break
 
         elif escolha == "1":
-            #adicionar a função respectiva
+            tarefa = input("digite a tarefa que você deseja adicionar ")
+            adicionar_tarefa(tasks, tarefa)
+
+print(tasks)
             
-        elif escolha == "2":
-            #adicionar a função respectiva
-            
-        elif escolha == "3":
-            #adicionar a função respectiva
-            
-        elif escolha == "4":
-            #adicionar a função respectiva
-            
-        elif escolha == "5":
-            #adicionar a função respectiva
-        
