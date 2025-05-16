@@ -16,10 +16,19 @@ def visualizar_tarefas(tarefas):
 
 def atualizar_nome_tarefas (tarefas, numero_tarefa, nova_tarefa):
     """recebe o numero da tarefa, que deseja ser alterada, na lista de tarefas e troca o nome dela"""
-    tarefas[numero_tarefa - 1] = {"tarefa":nova_tarefa, "completa": False}
-    print(f"tarefa{numero_tarefa} atualizada para {nova_tarefa}")
+    indice = numero_tarefa - 1
+    if indice >= 0 and indice < len(tarefas):
+        tarefas[indice] = {"tarefa":nova_tarefa, "completa": False}
+        print(f"tarefa{numero_tarefa} atualizada para {nova_tarefa}")
+    else:
+        print("indice invalido")
     return
-     
+
+def completar_tarefa (tarefas, tarefa_concluida):
+    """marca uma tarefa ja concluida com o sinal de concluida([✓])"""
+    tarefas[tarefa_concluida - 1]["completa"] = True
+    return
+
 lista_tarefas = [] 
 
 while True:
@@ -48,6 +57,11 @@ while True:
             tarefa_para_atualizar = int(input("digite o numero da tarefa que você deseja atualizar "))
             nova_tarefa = input("digite o nome da nova tarefa ")
             atualizar_nome_tarefas(lista_tarefas, tarefa_para_atualizar, nova_tarefa)
+
+        elif escolha == "4":
+            visualizar_tarefas(lista_tarefas)
+            tarefa_concluida = int(input("digite o numero da tarefa que você deseja marcar como concluída "))
+            completar_tarefa(lista_tarefas, tarefa_concluida)
 
 
 
