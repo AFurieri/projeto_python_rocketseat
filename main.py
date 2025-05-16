@@ -5,10 +5,17 @@ def adicionar_tarefa(tarefas, nome_tarefa):
     print(f"tarefa '{nome_tarefa}' adicionada com sucesso")
     return
 
-tasks = []
+def visualizar_tarefas(tarefas):
+    print("\nlista de tarefas: ")
+
+    for i, tarefa in enumerate(tarefas, start=1):
+        status = "[✓]" if tarefa["completa"] else "[ ]"
+        print(f"{i}. {status} {tarefa['tarefa']}")
+     
+lista_tarefas = [] 
 
 while True:
-        print("\nmenu do gerenciamento de listas\n")
+        print("\nmenu do gerenciamento de tarefas:\n")
         print("opção 1: adicionar tarefa")
         print("opção 2: visualizar tarefas")
         print("opção 3: atualizar tarefa")
@@ -23,7 +30,9 @@ while True:
 
         elif escolha == "1":
             tarefa = input("digite a tarefa que você deseja adicionar ")
-            adicionar_tarefa(tasks, tarefa)
+            adicionar_tarefa(lista_tarefas, tarefa)
 
-print(tasks)
+        elif escolha == "2": 
+            visualizar_tarefas(lista_tarefas)
+
             
