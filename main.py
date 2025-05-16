@@ -9,6 +9,8 @@ def adicionar_tarefa(tarefas, nome_tarefa):
 def visualizar_tarefas(tarefas):
     """visualiza a lista com todas as tarefas e mostra se estão concluidas ([✓]) ou não ([ ])"""
     print("\nlista de tarefas: ")
+    if len(tarefas) == 0:
+        print("\nlista vazia")
     for i, tarefa in enumerate(tarefas, start=1):
         status = "[✓]" if tarefa["completa"] else "[ ]"
         print(f"{i}. {status} {tarefa['tarefa']}")
@@ -19,14 +21,23 @@ def atualizar_nome_tarefas (tarefas, numero_tarefa, nova_tarefa):
     indice = numero_tarefa - 1
     if indice >= 0 and indice < len(tarefas):
         tarefas[indice] = {"tarefa":nova_tarefa, "completa": False}
-        print(f"tarefa{numero_tarefa} atualizada para {nova_tarefa}")
+        print(f"tarefa{numero_tarefa} atualizada para {nova_tarefa}!")
     else:
-        print("indice invalido")
+        print("indice invalido!")
     return
 
 def completar_tarefa (tarefas, tarefa_concluida):
-    """marca uma tarefa ja concluida com o sinal de concluida([✓])"""
-    tarefas[tarefa_concluida - 1]["completa"] = True
+    """marca uma tarefa ja concluida (apontada pelo usuário) com o sinal de concluida([✓])"""
+    index = tarefa_concluida - 1
+    tarefas[index]["completa"] = True
+    print(f"tarefa {tarefas[index]} marcada como concluida!")
+    return
+
+def deletar_tarefa_completada(tarefas):
+    for tarefa in tarefas:
+        if tarefa["completa"]:
+            tarefas.remove(tarefa)
+    print("tarefas concluídas foram deletas!")
     return
 
 lista_tarefas = [] 
@@ -40,7 +51,7 @@ while True:
         print("opção 5: deletar tarefas completadas")
         print("opção 6: sair") 
 
-        escolha = input("\ndigite a opção que você deseja acionar\n")
+        escolha = input("\ndigite a opção que você deseja acionar:")
 
         if escolha == "6":
             break
@@ -62,6 +73,10 @@ while True:
             visualizar_tarefas(lista_tarefas)
             tarefa_concluida = int(input("digite o numero da tarefa que você deseja marcar como concluída "))
             completar_tarefa(lista_tarefas, tarefa_concluida)
+
+        elif escolha == "5":
+            deletar_tarefa_completada(lista_tarefas)           
+            visualizar_tarefas(lista_tarefas)
 
 
 
